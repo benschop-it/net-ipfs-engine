@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PeterO.Cbor;
 
 namespace Ipfs.Engine.LinkedData
@@ -43,7 +39,7 @@ namespace Ipfs.Engine.LinkedData
                 .Select(link => new DagLink(
                     link["Name"].AsString(),
                     Cid.Decode(link["Cid"]["/"].AsString()),
-                    link["Size"].AsInt64()));
+                    link["Size"].AsNumber().ToInt64Checked()));
             var node = new DagNode(data["data"].GetByteString(), links);
             using (var ms = new MemoryStream())
             {

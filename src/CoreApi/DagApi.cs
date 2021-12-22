@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Ipfs.CoreApi;
@@ -15,12 +14,11 @@ namespace Ipfs.Engine.CoreApi
 {
     class DagApi : IDagApi
     {
-        static readonly PODOptions podOptions = new PODOptions
-        (
-            removeIsPrefix: false,
-            useCamelCase: false
+        private static readonly PODOptions podOptions = new PODOptions(
+            "useCamelCase=false;removeIsPrefix=false"
         );
-        IpfsEngine ipfs;
+
+        private readonly IpfsEngine ipfs;
 
         public DagApi(IpfsEngine ipfs)
         {
@@ -34,14 +32,12 @@ namespace Ipfs.Engine.CoreApi
             var block = await ipfs.Block.GetAsync(id, cancel).ConfigureAwait(false);
             var format = GetDataFormat(id);
             var canonical = format.Deserialise(block.DataBytes);
-            using (var ms = new MemoryStream())
-            using (var sr = new StreamReader(ms))
-            using (var reader = new JsonTextReader(sr))
-            {
-                canonical.WriteJSONTo(ms);
-                ms.Position = 0;
-                return (JObject) JObject.ReadFrom(reader);
-            }
+            await using var ms = new MemoryStream();
+            using var sr = new StreamReader(ms);
+            using var reader = new JsonTextReader(sr);
+            canonical.WriteJSONTo(ms);
+            ms.Position = 0;
+            return (JObject) await JObject.ReadFromAsync(reader, cancel);
         }
 
         public async Task<JToken> GetAsync(

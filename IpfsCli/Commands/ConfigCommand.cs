@@ -1,14 +1,8 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Manage the configuration")]
     [Subcommand("show", typeof(ConfigShowCommand))]
     [Subcommand("replace", typeof(ConfigReplaceCommand))]

@@ -1,13 +1,6 @@
-﻿using Ipfs.Engine;
-using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Threading.Tasks;
+﻿using McMaster.Extensions.CommandLineUtils;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Query IPFS statistics")]
     [Subcommand("bw", typeof(StatsBandwidthCommand))]
     [Subcommand("repo", typeof(StatsRepoCommand))]

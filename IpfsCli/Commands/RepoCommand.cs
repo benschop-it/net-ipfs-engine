@@ -1,13 +1,8 @@
 ﻿using Ipfs.Engine;
 using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Manage the IPFS repository")]
     [Subcommand("gc", typeof(RepoGCCommand))]
     [Subcommand("migrate", typeof(RepoMigrateCommand))]

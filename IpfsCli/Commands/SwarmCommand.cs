@@ -1,13 +1,7 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Manage connections to the p2p network")]
     [Subcommand("connect", typeof(SwarmConnectCommand))]
     [Subcommand("disconnect", typeof(SwarmDisconnectCommand))]

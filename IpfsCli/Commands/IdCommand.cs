@@ -1,12 +1,7 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Show info on an IPFS peer")]
     class IdCommand : CommandBase
     {

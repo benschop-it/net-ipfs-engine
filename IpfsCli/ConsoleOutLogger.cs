@@ -18,14 +18,11 @@
 
 #endregion
 
-using System;
 #if !SILVERLIGHT
-using System.Collections.Generic;
 #endif
 using System.Text;
 
-namespace Common.Logging.Simple
-{
+namespace Common.Logging.Simple {
     /// <summary>
     /// Sends log messages to <see cref="Console.Out" />.
     /// </summary>

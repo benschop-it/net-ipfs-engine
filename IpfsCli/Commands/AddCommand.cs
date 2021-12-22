@@ -1,12 +1,8 @@
 ﻿using Ipfs.CoreApi;
 using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
+namespace Ipfs.Cli 
 {
     [Command(Description = "Add a file to IPFS")]
     class AddCommand : CommandBase

@@ -18,11 +18,9 @@
 
 #endregion
 
-using System;
 using Common.Logging.Configuration;
 
-namespace Common.Logging.Simple
-{
+namespace Common.Logging.Simple {
     /// <summary>
     /// Factory for creating <see cref="ILog" /> instances that write data to <see cref="Console.Out" />.
     /// </summary>

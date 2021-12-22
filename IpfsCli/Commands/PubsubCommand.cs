@@ -1,13 +1,8 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Publish/subscribe to messages on a given topic")]
     [Subcommand("ls", typeof(PubsubListCommand))]
     [Subcommand("peers", typeof(PubsubPeersCommand))]

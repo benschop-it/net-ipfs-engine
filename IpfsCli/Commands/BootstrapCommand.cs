@@ -1,12 +1,6 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Manage bootstrap peers")]
     [Subcommand("list", typeof(BootstrapListCommand))]
     [Subcommand("rm", typeof(BootstrapRemoveCommand))]

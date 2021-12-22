@@ -1,13 +1,7 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ipfs.Cli
-{
+namespace Ipfs.Cli {
     [Command(Description = "Manage raw blocks")]
     [Subcommand("stat", typeof(BlockStatCommand))]
     [Subcommand("rm", typeof(BlockRemoveCommand))]

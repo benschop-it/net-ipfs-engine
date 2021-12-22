@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Ipfs.CoreApi;
 using Ipfs.Engine;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Ipfs.Server
@@ -28,16 +23,15 @@ namespace Ipfs.Server
         /// <summary>
         ///   Main entry point.
         /// </summary>
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             try
             {
                 IpfsEngine = new IpfsEngine(passphrase.ToCharArray());
-                IpfsEngine.StartAsync().Wait();
+                await IpfsEngine.StartAsync();
 
-                BuildWebHost(args)
-                    .RunAsync(cancel.Token)
-                    .Wait();
+                await BuildWebHost(args)
+                    .RunAsync(cancel.Token);
             }
             catch (TaskCanceledException)
             {
@@ -50,14 +44,19 @@ namespace Ipfs.Server
 
             if (IpfsEngine != null)
             {
-                IpfsEngine.StopAsync().Wait();
+                await IpfsEngine.StopAsync();
             }
         }
 
         static IWebHost BuildWebHost(string[] args)
         {
             var urls = "http://127.0.0.1:5009";
-            var addr = (string)IpfsEngine.Config.GetAsync("Addresses.API").Result;
+            var addrTask = Task.Run(async () =>
+            {
+                var jToken = await IpfsEngine.Config.GetAsync("Addresses.API");
+                return jToken;
+            });
+            var addr = (string)addrTask.Result;
             if (addr != null)
             {
                 // Quick and dirty: multiaddress to URL

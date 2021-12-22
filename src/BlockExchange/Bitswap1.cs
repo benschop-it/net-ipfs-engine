@@ -1,15 +1,14 @@
 ﻿using Common.Logging;
 using PeerTalk;
-using PeerTalk.Protocols;
 using ProtoBuf;
 using Semver;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+#pragma warning disable 414
 
 #pragma warning disable 0649 // disable warning about unassinged fields
 #pragma warning disable 0169// disable warning about unassinged fields

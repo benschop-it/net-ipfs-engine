@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
@@ -13,13 +11,13 @@ using Ipfs.Engine.Cryptography;
 using Ipfs.Engine.Migration;
 using PeerTalk;
 using System.Reflection;
-using PeerTalk.Discovery;
 using Nito.AsyncEx;
 using Makaretu.Dns;
 using System.Collections.Concurrent;
 using System.Security;
 using PeerTalk.SecureCommunication;
 using PeerTalk.Cryptography;
+// ReSharper disable UnusedMemberInSuper.Global
 
 namespace Ipfs.Engine
 {
@@ -31,7 +29,7 @@ namespace Ipfs.Engine
     ///   The engine should be used as a shared object in your program. It is thread safe (re-entrant) and conserves 
     ///   resources when only one instance is used.
     /// </remarks>
-    public partial class IpfsEngine : ICoreApi, IService, IDisposable
+    public partial class IpfsEngine : IIpfsEngine
     {
         static ILog log = LogManager.GetLogger(typeof(IpfsEngine));
 
